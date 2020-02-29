@@ -1,0 +1,27 @@
+Problem czytelników i pisarzy
+Zadanie polega na realizacji problemu czytelników i pisarzy przy czym:
+- jest ustalona liczba procesów — N;
+- każdy proces działa naprzemiennie w dwóch fazach: fazie relaksu i fazie korzystania z czytelni;
+- w dowolnym momencie fazy relaksu proces może (choć nie musi) zmienić swoją rolę: z pisarza na czytelnika lub z czytelnika na pisarza;
+- przechodząc do fazy korzystania z czytelni proces musi uzyskać dostęp we właściwym dla swojej aktualnej roli trybie;
+- pisarz umieszcza efekt swojej pracy — swoje dzieło — w formie komunikatu w kolejce komunikatów, gdzie komunikat ten pozostaje do momentu, aż wszystkie procesy, które w momencie wydania dzieła były w roli czytelnika, nie odczytają go (po odczytaniu przez wszystkie wymagane procesy komunikat jest usuwany);
+- pojemność kolejki komunikatów — reprezentującej półkę z książkami — jest ograniczona, tzn. nie może ona przechowywać więcej niż K dzieł; 
+- podczas pobytu w czytelni proces (również pisarz) czyta co najwyżej jedno dzieło, po czym czytelnik opuszcza czytelnię, a pisarz czeka na miejsce w kolejce, żeby opublikować kolejne dzieło.
+
+Parametry: 
+Na początku pliku znajdują się dwie zmienne globalne N - odpowiadająca za ilość procesów i K - odpowiadająca za pojemność kolejki komunikatów.
+
+Idea realizacji:
+Zgodnie z założeniem projketu procesy działają w dwóch rolach - czytelnika i pisarza. W czytelni może przebywać tylko jeden pisarz lub dowolna ilość czytelników. Pisarz podczas swojego pobytu w czytelni sprawdza, kto obecnie jest w roli czytelnika i do niego kieruje swoje dzieło. Do realizacji wykorzystałem tablice dwuwymiarową, w której dla każdego  czytelnika określam komunikat, który musi przeczytać. Czytelnik wchodząc do biblioteki sprawdza czy jest jakiś komunikat dla niego. Jeśli tak to czyta dane dzieło.
+
+
+Gdy jest czytelnikiem:
+- Jeśli mu się uda wejść to zwiększa liczbę czytelników
+- Następnie sprawdza w tablicy czy jest jakiś komunikat dla niego.
+- Jeśli tak to go czyta. Sprawdza czy ktoś jeszcze chce przeczytać ten komunikat, jeśli tak wysyła ponownie. W przeciwnym razie usuwa go.
+- Następnie wychodzi z czytelni i udaje się na relaks.
+
+Gdy jest pisarzem:
+- Pisarz korzysta z czytelni podczas gdy nie ma w niej innego pisarza ani czytelnika.
+- Pisarz również może czytać dzieła. Jeśli jest jakieś dzieło skierowane do niego to je czyta.
+- Jeśli jest wolne miejsce w kolejce komunikatów to tworzy dzieło. Przy czym sprawdza kto obecnie jest czytelnikiem i ustawia w tabeli że dany proces musi przeczytać ten komunikat. Następnie wychodzi z czytelni i udaje się na ralaks.

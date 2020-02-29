@@ -1,0 +1,10 @@
+
+KOMPILACJA
+W celu kompilacji kodu wpisujemy komendę 'make all'.
+Aby usunąć pliki wpisujemy komendę 'make clean'.
+
+URUCHOMIENIE
+Kod kompiluje się do pliku `run`, aby uruchomić należy wpisać komende './run'
+
+OPIS PLIKÓW Z KODEM
+Całość kodu zawiera się w pliku `main.c`.

@@ -1,0 +1,18 @@
+Cząsteczki wody
+
+Producenci wodoru oraz tlenu umieszczają w swoich jednoelementowych buforach (w losowych odstępach czasu) atom wodoru lub atom tlenu. Gdy wśród wyprodukowanych atomów znajdą się dwa wodoru i jeden tlenu, powstaje woda a ich producenci wracają do pracy.
+
+Parametry:
+Na początku pliku znajdują się dwie zmienne globalne KO - odpowiadająca za liczbę producentów tlenu i KH - odpowiadająca za iczbę producentów wodoru.
+
+Idea realizacji:
+
+WĄTKI:
+a. Producent tlenu
+Zadaniem wątku producent tlenu jest dostarczanie atomu w skończonym czasie. Po wyprodukowaniu takiego atomu, wątek czeka na zabranie go przez konsumenta. Następnie znów wraca do pracy.
+
+b. Producent wodoru
+Zadaniem wątku producent wodoru jest dostarczanie atomu w skończonym czasie. Po wyprodukowaniu takiego atomu, wątek czeka na zabranie go przez konsumenta. Następnie znów wraca do pracy.
+
+c. Konsument (produkuje wodę)
+Zadaniem wątku konsument jest stworzenie wody w momencie gdy wśród wyprodukowanych atomów znajdą się dwa atomy wodoru i jeden tlenu. Jeśli tak, to wątek wysyła sygnały do producentów wodoru i tlenu, aby kontynuowały swoją pracę.  W przeciwnym wypadku wątek czeka na wykonanie kolejnego atomu. 
